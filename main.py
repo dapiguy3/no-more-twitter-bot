@@ -9,8 +9,8 @@ import discord
 from discord.ext import commands
 
 intents = discord.Intents.default()
-intents.messages = True
-
+intents.message_content = True
+intents.guild_messages = True
 #this is the actual bot object.
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -20,8 +20,9 @@ async def on_ready():
 
 
 @bot.event
-async def on_message(ctx):
-    if "x.com" in ctx.content.lower() or "twitter.com" in ctx.content.lower():
-        await ctx.delete()
+async def on_message(message):
+    print(message.content)
+    if "x.com" in message.content.lower() or "twitter.com" in message.content.lower():
+        await message.delete()
 
 bot.run(auth.token)
