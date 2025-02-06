@@ -8,11 +8,11 @@ import auth
 import discord
 from discord.ext import commands
 
-intents = discord.Intents.all()
-intents.members = True
+intents = discord.Intents.default()
+intents.messages = True
 
 #this is the actual bot object.
-bot = commands.Bot(intents=intents)
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
